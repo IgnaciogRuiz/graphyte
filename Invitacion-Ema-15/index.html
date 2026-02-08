@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Real - Un Evento Extraordinario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FFF8F0;
+            --gold: #D4AF37;
+            --deep-blue: #1B2838;
+            --rose: #E8B4B8;
+            --sage: #C8D5B9;
+            --burgundy: #6B2C3E;
+            --ivory: #FFFFF0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--cream);
+            color: var(--deep-blue);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* === PORTONES DEL PALACIO === */
+        .gate-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .gate-left, .gate-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d1810 0%, #4a2c1f 50%, #2d1810 100%);
+            transition: transform 2.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+        }
+
+        .gate-left {
+            left: 0;
+            border-right: 3px solid var(--gold);
+        }
+
+        .gate-right {
+            right: 0;
+            border-left: 3px solid var(--gold);
+        }
+
+        .gate-left::before, .gate-right::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--gold) 0%, #8B7355 100%);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .gate-left::before {
+            right: 20px;
+        }
+
+        .gate-right::before {
+            left: 20px;
+        }
+
+        .gate-ornament {
+            position: absolute;
+            font-size: 120px;
+            color: var(--gold);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            font-family: 'Cinzel', serif;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.9;
+        }
+
+        .gate-left .gate-ornament {
+            right: 40px;
+        }
+
+        .gate-right .gate-ornament {
+            left: 40px;
+        }
+
+        .gate-container.open .gate-left {
+            transform: translateX(-100%);
+        }
+
+        .gate-container.open .gate-right {
+            transform: translateX(100%);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            background: 
+                radial-gradient(ellipse at top, rgba(232, 180, 184, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(200, 213, 185, 0.2) 0%, transparent 50%),
+                var(--cream);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 2.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 50px,
+                rgba(212, 175, 55, 0.03) 50px,
+                rgba(212, 175, 55, 0.03) 51px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .birthday-girl {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            border: 6px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.5);
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--rose) 0%, var(--sage) 100%);
+        }
+        
+        @media (max-width: 480px) {
+            .birthday-girl {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .birthday-girl img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .birthday-girl-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .crest {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .crest svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--gold);
+            filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.3));
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 600;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 1.5rem auto;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '❖';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+            background: var(--cream);
+            padding: 0 10px;
+            font-size: 14px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-style: italic;
+            color: var(--deep-blue);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .event-date {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--burgundy);
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        /* === COUNTDOWN === */
+        .countdown-section {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: var(--burgundy);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            background: white;
+            padding: 1.5rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 2px solid var(--rose);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 700;
+            color: var(--burgundy);
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: var(--deep-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* === INFO SECTION === */
+        .info-section {
+            padding: 4rem 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--rose), var(--gold), var(--sage));
+        }
+
+        .info-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            line-height: 1.8;
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+        }
+
+        /* === GALLERY === */
+        .gallery-section {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--rose) 0%, var(--sage) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            font-style: italic;
+        }
+
+        /* === MAP === */
+        .map-section {
+            padding: 4rem 1.5rem;
+        }
+
+        .map-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        /* === RSVP === */
+        .rsvp-section {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--ivory) 0%, var(--rose) 50%, var(--ivory) 100%);
+            text-align: center;
+        }
+
+        .rsvp-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--rose);
+            border-radius: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--gold) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(107, 44, 62, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107, 44, 62, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            background: var(--deep-blue);
+            color: var(--cream);
+        }
+
+        .footer p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .footer-divider {
+            width: 150px;
+            height: 1px;
+            background: var(--gold);
+            margin: 1.5rem auto;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .gate-left::before, .gate-right::before {
+                width: 50px;
+                height: 50px;
+            }
+
+            .gate-ornament {
+                font-size: 60px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- PORTONES DEL PALACIO -->
+    <div class="gate-container" id="gateContainer">
+        <div class="gate-left">
+            <div class="gate-ornament">⚜</div>
+        </div>
+        <div class="gate-right">
+            <div class="gate-ornament">⚜</div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <!-- Imagen de la cumpleañera -->
+        <!-- <div class="birthday-girl">
+            <img src="ruta-a-su-imagen.jpg" alt="Quinceañera" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.birthday-girl-placeholder').style.display='none';">
+            <div class="birthday-girl-placeholder">Foto de la Quinceañera</div>
+        </div> -->
+
+        <div class="crest">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10 L60 30 L80 30 L65 45 L70 65 L50 50 L30 65 L35 45 L20 30 L40 30 Z"/>
+                <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M50 20 Q50 40 30 50 Q50 60 50 80 Q50 60 70 50 Q50 40 50 20" fill="currentColor" opacity="0.3"/>
+            </svg>
+        </div>
+        
+        <h1>Está Usted Cordialmente Invitado</h1>
+        <div class="divider"></div>
+        <p class="subtitle">A celebrar los XV años de Ema</p>
+        <p class="event-date">📅 Sábado, 15 de Marzo de 2026 • 19:00 hs</p>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section class="countdown-section">
+        <h2 class="section-title">La Cuenta Regresiva Comienza</h2>
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutos</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMACIÓN DEL EVENTO -->
+    <section class="info-section">
+        <div class="info-card">
+            <h3><span class="icon">👗​</span> Código de Vestimenta</h3>
+            <p style="font-style: italic; margin-bottom: 1.5rem; color: var(--burgundy);">Querido lector:</p>
+            <p>Esta ocasión exige una presentación acorde a su importancia.</p>
+            <p style="margin-top: 1rem;">Se solicita a los distinguidos invitados optar por <strong>atuendos largos, elegantes y en tonos claros</strong>, dignos de una velada que celebra la entrada de una joven dama en la sociedad.</p>
+            <p style="margin-top: 1rem;">Los colores oscuros, y en especial el negro, deberán permanecer en reserva para otras ocasiones. Esta noche ha sido pensada para brillar.</p>
+            <p style="margin-top: 1rem;">En cuanto a los caballeros, se espera <strong>sastrería</strong>, ya sea en forma de traje completo o combinaciones de pantalón de vestir y camisa.</p>
+            <p style="margin-top: 1rem;">El uso de jeans no será considerado apropiado para tan refinado encuentro.</p>
+            <p style="margin-top: 1.5rem; font-style: italic; color: var(--burgundy);">Quien respete estas indicaciones, sin duda, estará a la altura del evento… y de las miradas.</p>
+            
+            <!-- Galería de Referencias de Dresscode -->
+            <div style="margin-top: 2rem;">
+                <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--burgundy); margin-bottom: 1rem; text-align: center;">
+                    <strong>Referencias de Vestimenta</strong>
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
+                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--rose) 0%, var(--sage) 100%);">
+                        <img src="./images/d1.jpg" alt="Vestido largo claro" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Vestido Largo</div>
+                    </div>
+                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--sage) 0%, var(--gold) 100%);">
+                        <img src="./images/d2.jpg" alt="Traje caballero" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Traje Caballero</div>
+                    </div>
+                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);">
+                        <img src="./images/d3.jpg" alt="Vestido elegante" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Elegancia</div>
+                    </div>
+                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--rose) 0%, var(--burgundy) 100%);">
+                        <img src="./images/d4.jpg" alt="Tonos claros" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Tonos Claros</div>
+                    </div>
+                </div>
+                <!-- <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; font-style: italic; color: var(--deep-blue);">
+                    * Agregue sus propias imágenes de referencia
+                </p> -->
+            </div>
+        </div>
+
+        <!-- <div class="info-card">
+            <h3><span class="icon">🎭</span> Programa de la Velada</h3>
+            <p>19:00 - Recepción con cóctel de bienvenida</p>
+            <p>20:00 - Cena de gala</p>
+            <p>22:00 - Apertura del baile</p>
+            <p>00:00 - Brindis especial</p>
+        </div>
+
+        <div class="info-card">
+            <h3><span class="icon">ℹ️</span> Información Adicional</h3>
+            <p>• Servicio de valet parking disponible</p>
+            <p>• Menú adaptable para restricciones alimentarias (informar en RSVP)</p>
+            <p>• Fotografía profesional durante el evento</p>
+            <p>• Música en vivo y orquesta</p>
+        </div> -->
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="gallery-section">
+        <h2 class="section-title">Galería del Palacio</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Jardines</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Salón de Baile</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Terraza</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Decoración</div>
+            </div>
+        </div>
+        <!-- <p style="text-align: center; margin-top: 2rem; font-style: italic; color: var(--deep-blue);">
+            * Reemplace los placeholders con sus imágenes reales
+        </p> -->
+    </section>
+
+    <!-- MAPA -->
+    <section class="map-section">
+        <h2 class="section-title">Cómo Llegar</h2>
+        <div class="map-container">
+            <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--burgundy); margin-bottom: 1rem;">
+                <strong>Residencia IOSFA Cosquín</strong>
+            </p>
+            <p style="margin-bottom: 1rem;">Cosquín, Córdoba, Argentina</p>
+            <iframe 
+                src="https://maps.google.com/maps?q=Residencia+IOSFA%2C+Cosqu%C3%ADn%2C+C%C3%B3rdoba%2C+Argentina&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%" 
+                height="400" 
+                style="border:0; border-radius: 10px; margin-top: 1rem;" 
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp-section">
+        <h2 class="section-title">Confirmar Asistencia</h2>
+        <div class="rsvp-form">
+            <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 2rem; color: var(--burgundy);">
+                Su presencia honraría la ocasión
+            </p>
+            
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="name">Nombre Completo *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="attendance">¿Confirma su asistencia? *</label>
+                    <select id="attendance" name="attendance" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="yes">Sí, asistiré con placer</option>
+                        <option value="no">Lamentablemente no podré asistir</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Número de acompañantes</label>
+                    <select id="guests" name="guests">
+                        <option value="0">Solo yo</option>
+                        <option value="1">1 acompañante</option>
+                        <option value="2">2 acompañantes</option>
+                        <option value="3">3 acompañantes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dietary">Restricciones alimentarias</label>
+                    <textarea id="dietary" name="dietary" rows="3" placeholder="Vegetariano, vegano, alergias, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensaje para los anfitriones</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Deje aquí sus buenos deseos..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Confirmar Asistencia</button>
+            </form>
+
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--deep-blue);">
+                * Fecha límite para confirmar: <strong>1 de Marzo de 2026</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="divider" style="background: linear-gradient(to right, transparent, var(--gold), transparent);"></div>
+        <p>"El amor y el escándalo son las mejores dulzuras de la sociedad"</p>
+        <div class="footer-divider"></div>
+        <p style="font-size: 0.9rem; opacity: 0.8;">Con todo nuestro afecto</p>
+        <p style="font-size: 1.3rem; margin-top: 1rem;">Los Anfitriones</p>
+    </footer>
+
+    <script>
+        // === APERTURA DE PORTONES ===
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('gateContainer').classList.add('open');
+            }, 500);
+        });
+
+        // === COUNTDOWN ===
+        function updateCountdown() {
+            const eventDate = new Date('2026-05-01T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // === RSVP FORM ===
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                attendance: document.getElementById('attendance').value,
+                guests: document.getElementById('guests').value,
+                dietary: document.getElementById('dietary').value,
+                message: document.getElementById('message').value
+            };
+
+            // Aquí integraría con su backend o servicio de email
+            console.log('RSVP Data:', formData);
+            
+            // Mensaje de confirmación
+            alert('¡Gracias por confirmar su asistencia! Recibirá un correo de confirmación en breve.');
+            
+            // Opcional: limpiar formulario
+            this.reset();
+        });
+
+        // === SMOOTH SCROLL ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

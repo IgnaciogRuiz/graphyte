@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación Real - Un Evento Extraordinario</title>
+    <link rel="shortcut icon" href="./images/favi.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --cream: #FFF8F0;
@@ -373,6 +375,231 @@
             font-size: 1.5rem;
         }
 
+        /* === MUSIC SECTION === */
+        .music-section {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--sage) 50%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-section::before {
+            content: '♪ ♫ ♪ ♫';
+            position: absolute;
+            top: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.1;
+            letter-spacing: 2rem;
+        }
+
+        .music-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .music-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .music-intro p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            line-height: 1.8;
+            color: var(--deep-blue);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .music-form {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+
+        .music-form::before {
+            content: '🎵';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .music-form h3 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--burgundy);
+            text-align: center;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+        }
+
+        .song-input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .song-input-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .add-song-btn {
+            background: var(--sage);
+            color: var(--deep-blue);
+            border: 2px solid var(--gold);
+            padding: 0.8rem 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .add-song-btn:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .song-item {
+            background: linear-gradient(135deg, rgba(232, 180, 184, 0.2), rgba(200, 213, 185, 0.2));
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--rose);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .song-info { flex: 1; }
+
+        .song-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--burgundy);
+            margin-bottom: 0.25rem;
+        }
+
+        .song-artist {
+            font-size: 0.95rem;
+            color: var(--deep-blue);
+            opacity: 0.8;
+        }
+
+        .remove-song-btn {
+            background: transparent;
+            border: none;
+            color: var(--burgundy);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+
+        .remove-song-btn:hover {
+            color: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .songs-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .songs-count {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .songs-list::-webkit-scrollbar { width: 8px; }
+        .songs-list::-webkit-scrollbar-track { background: rgba(200, 213, 185, 0.2); border-radius: 10px; }
+        .songs-list::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        .empty-list-message {
+            text-align: center;
+            padding: 2rem;
+            color: var(--deep-blue);
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .submit-songs-btn {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--gold) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(107, 44, 62, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-songs-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107, 44, 62, 0.4);
+        }
+
+        .submit-songs-btn:active { transform: translateY(0); }
+
+        .submit-songs-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .music-note-decoration {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 2rem;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+
         /* === GALLERY === */
         .gallery-section {
             padding: 4rem 1.5rem;
@@ -397,9 +624,7 @@
             transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
+        .gallery-item:hover { transform: scale(1.05); }
 
         .gallery-placeholder {
             width: 100%;
@@ -414,9 +639,7 @@
         }
 
         /* === MAP === */
-        .map-section {
-            padding: 4rem 1.5rem;
-        }
+        .map-section { padding: 4rem 1.5rem; }
 
         .map-container {
             max-width: 900px;
@@ -494,8 +717,58 @@
             box-shadow: 0 8px 25px rgba(107, 44, 62, 0.4);
         }
 
-        .btn-submit:active {
-            transform: translateY(0);
+        .btn-submit:active { transform: translateY(0); }
+
+        /* === TOAST NOTIFICATION === */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--deep-blue);
+            color: var(--cream);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            border: 1px solid var(--gold);
+            z-index: 10000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            max-width: 90vw;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success { border-color: var(--sage); }
+        .toast.error   { border-color: #e74c3c; }
+
+        /* === LOADING SPINNER === */
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: translateY(-50%) rotate(360deg); }
         }
 
         /* === FOOTER === */
@@ -526,11 +799,7 @@
                 width: 50px;
                 height: 50px;
             }
-
-            .gate-ornament {
-                font-size: 60px;
-            }
-
+            .gate-ornament { font-size: 60px; }
             .gallery {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                 gap: 1rem;
@@ -538,14 +807,15 @@
         }
 
         @media (max-width: 480px) {
-            .countdown {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .countdown { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
     
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast"></div>
+
     <!-- PORTONES DEL PALACIO -->
     <div class="gate-container" id="gateContainer">
         <div class="gate-left">
@@ -558,12 +828,6 @@
 
     <!-- HERO -->
     <section class="hero">
-        <!-- Imagen de la cumpleañera -->
-        <!-- <div class="birthday-girl">
-            <img src="ruta-a-su-imagen.jpg" alt="Quinceañera" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.birthday-girl-placeholder').style.display='none';">
-            <div class="birthday-girl-placeholder">Foto de la Quinceañera</div>
-        </div> -->
-
         <div class="crest">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <path d="M50 10 L60 30 L80 30 L65 45 L70 65 L50 50 L30 65 L35 45 L20 30 L40 30 Z"/>
@@ -613,7 +877,6 @@
             <p style="margin-top: 1rem;">El uso de jeans no será considerado apropiado para tan refinado encuentro.</p>
             <p style="margin-top: 1.5rem; font-style: italic; color: var(--burgundy);">Quien respete estas indicaciones, sin duda, estará a la altura del evento… y de las miradas.</p>
             
-            <!-- Galería de Referencias de Dresscode -->
             <div style="margin-top: 2rem;">
                 <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--burgundy); margin-bottom: 1rem; text-align: center;">
                     <strong>Referencias de Vestimenta</strong>
@@ -636,49 +899,35 @@
                         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Tonos Claros</div>
                     </div>
                 </div>
-                <!-- <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; font-style: italic; color: var(--deep-blue);">
-                    * Agregue sus propias imágenes de referencia
-                </p> -->
             </div>
         </div>
-
-        <!-- <div class="info-card">
-            <h3><span class="icon">🎭</span> Programa de la Velada</h3>
-            <p>19:00 - Recepción con cóctel de bienvenida</p>
-            <p>20:00 - Cena de gala</p>
-            <p>22:00 - Apertura del baile</p>
-            <p>00:00 - Brindis especial</p>
-        </div>
-
-        <div class="info-card">
-            <h3><span class="icon">ℹ️</span> Información Adicional</h3>
-            <p>• Servicio de valet parking disponible</p>
-            <p>• Menú adaptable para restricciones alimentarias (informar en RSVP)</p>
-            <p>• Fotografía profesional durante el evento</p>
-            <p>• Música en vivo y orquesta</p>
-        </div> -->
     </section>
 
-    <!-- GALERÍA -->
-    <section class="gallery-section">
-        <h2 class="section-title">Galería del Palacio</h2>
-        <div class="gallery">
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Jardines</div>
+    <!-- MÚSICA QUE NO PUEDE FALTAR -->
+    <section class="music-section">
+        <div class="music-container">
+            <div class="music-intro">
+                <h2 class="section-title">Música Que No Puede Faltar</h2>
+                <div class="divider"></div>
+                <p>Querido invitado, toda velada memorable necesita de una banda sonora excepcional.</p>
+                <p style="margin-top: 1rem;">¿Qué melodías desearía escuchar durante la celebración? Comparta con nosotros sus canciones favoritas para hacer de esta noche algo verdaderamente extraordinario.</p>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Salón de Baile</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Terraza</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Decoración</div>
+
+            <div class="music-form">
+                <h3>Sugiera Sus Canciones</h3>
+                
+                <div class="form-group">
+                    <label for="songName">Nombre de la Canción *</label>
+                    <input type="text" id="songName" placeholder="Ej: Can't Stop the Feeling">
+                </div>
+
+                <button type="button" class="submit-songs-btn" id="submitSongsBtn" disabled>
+                    Enviar Sugerencias Musicales
+                </button>
+
+                <div class="music-note-decoration">♪ ♫ ♪</div>
             </div>
         </div>
-        <!-- <p style="text-align: center; margin-top: 2rem; font-style: italic; color: var(--deep-blue);">
-            * Reemplace los placeholders con sus imágenes reales
-        </p> -->
     </section>
 
     <!-- MAPA -->
@@ -716,11 +965,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Correo Electrónico *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
                     <label for="phone">Teléfono</label>
                     <input type="tel" id="phone" name="phone">
                 </div>
@@ -729,24 +973,14 @@
                     <label for="attendance">¿Confirma su asistencia? *</label>
                     <select id="attendance" name="attendance" required>
                         <option value="">Seleccione una opción</option>
-                        <option value="yes">Sí, asistiré con placer</option>
+                        <option value="si">Sí, asistiré con placer</option>
                         <option value="no">Lamentablemente no podré asistir</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="guests">Número de acompañantes</label>
-                    <select id="guests" name="guests">
-                        <option value="0">Solo yo</option>
-                        <option value="1">1 acompañante</option>
-                        <option value="2">2 acompañantes</option>
-                        <option value="3">3 acompañantes</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label for="dietary">Restricciones alimentarias</label>
-                    <textarea id="dietary" name="dietary" rows="3" placeholder="Vegetariano, vegano, alergias, etc."></textarea>
+                    <textarea id="dietary" name="dietary" rows="3" placeholder="Vegetariano, vegano, alergias, normal, etc."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -754,12 +988,8 @@
                     <textarea id="message" name="message" rows="3" placeholder="Deje aquí sus buenos deseos..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">Confirmar Asistencia</button>
+                <button type="submit" class="btn-submit" id="rsvpBtn">Confirmar Asistencia</button>
             </form>
-
-            <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--deep-blue);">
-                * Fecha límite para confirmar: <strong>1 de Marzo de 2026</strong>
-            </p>
         </div>
     </section>
 
@@ -772,79 +1002,185 @@
         <p style="font-size: 1.3rem; margin-top: 1rem;">Los Anfitriones</p>
     </footer>
 
-    <script>
-        // === APERTURA DE PORTONES ===
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('gateContainer').classList.add('open');
-            }, 500);
+   
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBJHnltiuS-5XcrorCOHB490L3tigd5BIA",
+            authDomain: "graphyte-18e1e.firebaseapp.com",
+            projectId: "graphyte-18e1e",
+            storageBucket: "graphyte-18e1e.firebasestorage.app",
+            messagingSenderId: "1059083494206",
+            appId: "1:1059083494206:web:1ac4305a0542320463026f"
+        };
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // 🔥 INICIALIZA FIRESTORE (ESTO FALTABA)
+        const db = getFirestore(app);
+
+        // 👉 RSVP → colección "1"
+        document.getElementById("rsvpForm")?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            try {
+            await addDoc(collection(db, "1"), {
+                nombre: document.getElementById("name").value,
+                telefono: document.getElementById("phone").value,
+                asistencia: document.getElementById("attendance").value,
+                alimentacion: document.getElementById("dietary").value || "Normal",
+                mensaje: document.getElementById("message").value,
+                fecha: serverTimestamp()
+            });
+
+            alert("RSVP enviado");
+            e.target.reset();
+            } catch (err) {
+            console.error("ERROR RSVP:", err);
+            alert("Error al enviar RSVP (ver consola)");
+            }
         });
 
-        // === COUNTDOWN ===
+        // 👉 Canciones → colección "canciones"
+        document.getElementById("submitSongsBtn")?.addEventListener("click", async () => {
+            try {
+            await addDoc(collection(db, "canciones"), {
+                cancion: document.getElementById("songName").value,
+                nombre_invitado: document.getElementById("name")?.value || "Anónimo",
+                fecha: serverTimestamp()
+            });
+
+            alert("Canción enviada");
+            document.getElementById("songName").value = "";
+            } catch (err) {
+            console.error("ERROR CANCIÓN:", err);
+            alert("Error al enviar canción (ver consola)");
+            }
+        });
+
+        // ── Utilidad: Toast ────────────────────────────
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => { toast.classList.remove('show'); }, 4000);
+        }
+
+        // ── Countdown ─────────────────────────────────
         function updateCountdown() {
-            const eventDate = new Date('2026-05-01T00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+            const eventDate = new Date('2026-03-15T19:00:00').getTime();
+            const distance  = eventDate - Date.now();
 
             if (distance < 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
+                ['days','hours','minutes','seconds'].forEach(id =>
+                    document.getElementById(id).textContent = '00');
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            document.getElementById('days').textContent    = String(Math.floor(distance / 86400000)).padStart(2,'0');
+            document.getElementById('hours').textContent   = String(Math.floor((distance % 86400000) / 3600000)).padStart(2,'0');
+            document.getElementById('minutes').textContent = String(Math.floor((distance % 3600000) / 60000)).padStart(2,'0');
+            document.getElementById('seconds').textContent = String(Math.floor((distance % 60000) / 1000)).padStart(2,'0');
         }
-
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // === RSVP FORM ===
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                attendance: document.getElementById('attendance').value,
-                guests: document.getElementById('guests').value,
-                dietary: document.getElementById('dietary').value,
-                message: document.getElementById('message').value
-            };
-
-            // Aquí integraría con su backend o servicio de email
-            console.log('RSVP Data:', formData);
-            
-            // Mensaje de confirmación
-            alert('¡Gracias por confirmar su asistencia! Recibirá un correo de confirmación en breve.');
-            
-            // Opcional: limpiar formulario
-            this.reset();
+        // ── Apertura de portones ───────────────────────
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('gateContainer').classList.add('open'), 500);
         });
 
-        // === SMOOTH SCROLL ===
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // ── Smooth scroll ──────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                document.querySelector(a.getAttribute('href'))
+                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
+
+        // ══════════════════════════════════════════════
+        // ✅  FORMULARIO RSVP  →  colección "rsvp"
+        // ══════════════════════════════════════════════
+        document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = document.getElementById('rsvpBtn');
+            btn.classList.add('btn-loading');
+            btn.textContent = 'Enviando…';
+
+            try {
+                await addDoc(collection(db, 'rsvp'), {
+                    nombre:       document.getElementById('name').value.trim(),
+                    telefono:     document.getElementById('phone').value.trim(),
+                    asistencia:   document.getElementById('attendance').value,
+                    alimentacion: document.getElementById('dietary').value.trim(),
+                    mensaje:      document.getElementById('message').value.trim(),
+                    fecha:        serverTimestamp()
+                });
+
+                showToast('✨ ¡Confirmación enviada con éxito! Gracias por responder.', 'success');
+                e.target.reset();
+
+            } catch (err) {
+                console.error('Error RSVP:', err);
+                showToast('❌ Hubo un error al enviar. Intente nuevamente.', 'error');
+            } finally {
+                btn.classList.remove('btn-loading');
+                btn.textContent = 'Confirmar Asistencia';
+            }
+        });
+
+        // ══════════════════════════════════════════════
+        // 🎵  FORMULARIO CANCIONES  →  colección "canciones"
+        // ══════════════════════════════════════════════
+        const songInput   = document.getElementById('songName');
+        const submitBtn   = document.getElementById('submitSongsBtn');
+
+        // Habilitar botón sólo cuando hay texto
+        songInput.addEventListener('input', () => {
+            submitBtn.disabled = songInput.value.trim() === '';
+        });
+
+        submitBtn.addEventListener('click', async () => {
+            const cancion = songInput.value.trim();
+            if (!cancion) return;
+
+            submitBtn.classList.add('btn-loading');
+            submitBtn.textContent = 'Enviando…';
+            submitBtn.disabled = true;
+
+            try {
+                // Vincula la canción al nombre del RSVP si ya fue completado
+                const nombreInvitado = document.getElementById('name')?.value.trim() || 'Anónimo';
+
+                await addDoc(collection(db, 'canciones'), {
+                    cancion:         cancion,
+                    nombre_invitado: nombreInvitado,
+                    fecha:           serverTimestamp()
+                });
+
+                showToast('🎶 ¡Canción sugerida con éxito! Gracias por la recomendación.', 'success');
+                songInput.value = '';
+
+            } catch (err) {
+                console.error('Error canciones:', err);
+                showToast('❌ Hubo un error. Intente nuevamente.', 'error');
+            } finally {
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.textContent = 'Enviar Sugerencias Musicales';
+                submitBtn.disabled = true; // vuelve a deshabilitarse hasta que escriban
+            }
+        });
+
     </script>
 </body>
 </html>

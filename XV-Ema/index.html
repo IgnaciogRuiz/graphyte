@@ -34,6 +34,186 @@
             position: relative;
         }
 
+        /* === FLORES DECORATIVAS DE FONDO === */
+        .floral-decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.35;
+        }
+
+        .floral-top-left { top: 5vh; left: 0; width: 35vw; }
+        .floral-top-right { top: 12vh; right: 0; width: 35vw; }
+
+        .floral-mid-left-1 { top: 55vh; left: 0; width: 30vw; }
+        .floral-mid-right-1 { top: 85vh; right: 0; width: 32vw; }
+
+        .floral-mid-left-2 { top: 135vh; left: 0; width: 30vw; }
+        .floral-mid-right-2 { top: 165vh; right: 0; width: 32vw; }
+
+        .floral-lower-left { top: 215vh; left: 0; width: 28vw; }
+        .floral-lower-right { top: 245vh; right: 0; width: 30vw; }
+
+        .floral-bottom-left { top: 295vh; left: 0; width: 30vw; }
+        .floral-bottom-right { top: 325vh; right: 0; width: 32vw; }
+
+        .floral-decoration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* === IMAGEN DE BRIDGERTON === */
+        .bridgerton-decoration {
+            position: absolute;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bridgerton-1 { top: 40vh; right: 5vw; width: 120px; }
+        .bridgerton-2 { top: 120vh; left: 5vw; width: 110px; }
+        .bridgerton-3 { top: 210vh; right: 6vw; width: 125px; }
+        .bridgerton-4 { top: 300vh; left: 6vw; width: 115px; }
+
+        .bridgerton-decoration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* === FLECHA HACIA ABAJO === */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            animation: bounce-arrow 2s ease-in-out infinite;
+        }
+
+        .scroll-arrow svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--gold);
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
+        }
+
+        @keyframes bounce-arrow {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(15px);
+            }
+        }
+
+        /* === MODAL/POP-UP ELEGANTE === */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(27, 40, 56, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--ivory) 0%, var(--cream) 100%);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 3px solid var(--gold);
+            position: relative;
+            animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-message {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--deep-blue);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .modal-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--gold) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(107, 44, 62, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107, 44, 62, 0.4);
+        }
+
+        .modal-decorative-border {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
         /* === PORTONES DEL PALACIO === */
         .gate-container {
             position: fixed;
@@ -128,10 +308,11 @@
             position: relative;
             overflow: hidden;
             opacity: 0;
-            animation: fadeIn 1.5s ease-out 2.8s forwards;
+            animation: fadeInContent 1.5s ease-out 2.8s forwards;
+            z-index: 2;
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInContent {
             to { opacity: 1; }
         }
 
@@ -163,7 +344,7 @@
             border-radius: 50%;
             margin-bottom: 2rem;
             position: relative;
-            animation: float 3s ease-in-out infinite;
+            animation: floatHero 3s ease-in-out infinite;
             border: 6px solid var(--gold);
             box-shadow: 0 10px 40px rgba(212, 175, 55, 0.5);
             overflow: hidden;
@@ -177,7 +358,7 @@
             }
         }
 
-        @keyframes float {
+        @keyframes floatHero {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
@@ -268,6 +449,8 @@
             padding: 4rem 1.5rem;
             background: linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
@@ -331,6 +514,8 @@
             padding: 4rem 1.5rem;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .info-card {
@@ -381,6 +566,7 @@
             background: linear-gradient(180deg, var(--cream) 0%, var(--sage) 50%, var(--cream) 100%);
             position: relative;
             overflow: hidden;
+            z-index: 2;
         }
 
         .music-section::before {
@@ -453,117 +639,6 @@
             margin-top: 2rem;
         }
 
-        .song-input-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        @media (max-width: 600px) {
-            .song-input-group {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .add-song-btn {
-            background: var(--sage);
-            color: var(--deep-blue);
-            border: 2px solid var(--gold);
-            padding: 0.8rem 2rem;
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 0.5rem;
-            width: 100%;
-        }
-
-        .add-song-btn:hover {
-            background: var(--gold);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .song-item {
-            background: linear-gradient(135deg, rgba(232, 180, 184, 0.2), rgba(200, 213, 185, 0.2));
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--rose);
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .song-info { flex: 1; }
-
-        .song-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--burgundy);
-            margin-bottom: 0.25rem;
-        }
-
-        .song-artist {
-            font-size: 0.95rem;
-            color: var(--deep-blue);
-            opacity: 0.8;
-        }
-
-        .remove-song-btn {
-            background: transparent;
-            border: none;
-            color: var(--burgundy);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: all 0.2s ease;
-            line-height: 1;
-        }
-
-        .remove-song-btn:hover {
-            color: var(--gold);
-            transform: scale(1.2);
-        }
-
-        .songs-list {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 1.5rem;
-            padding-right: 0.5rem;
-        }
-
-        .songs-count {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            color: var(--burgundy);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .songs-list::-webkit-scrollbar { width: 8px; }
-        .songs-list::-webkit-scrollbar-track { background: rgba(200, 213, 185, 0.2); border-radius: 10px; }
-        .songs-list::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-
-        .empty-list-message {
-            text-align: center;
-            padding: 2rem;
-            color: var(--deep-blue);
-            font-style: italic;
-            opacity: 0.7;
-        }
-
         .submit-songs-btn {
             background: linear-gradient(135deg, var(--burgundy) 0%, var(--gold) 100%);
             color: white;
@@ -600,46 +675,12 @@
             opacity: 0.6;
         }
 
-        /* === GALLERY === */
-        .gallery-section {
-            padding: 4rem 1.5rem;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, var(--rose) 0%, var(--sage) 100%);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover { transform: scale(1.05); }
-
-        .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: white;
-            font-style: italic;
-        }
-
         /* === MAP === */
-        .map-section { padding: 4rem 1.5rem; }
+        .map-section { 
+            padding: 4rem 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
 
         .map-container {
             max-width: 900px;
@@ -655,6 +696,8 @@
             padding: 4rem 1.5rem;
             background: linear-gradient(180deg, var(--ivory) 0%, var(--rose) 50%, var(--ivory) 100%);
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .rsvp-form {
@@ -719,33 +762,6 @@
 
         .btn-submit:active { transform: translateY(0); }
 
-        /* === TOAST NOTIFICATION === */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--deep-blue);
-            color: var(--cream);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-            border: 1px solid var(--gold);
-            z-index: 10000;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center;
-            max-width: 90vw;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .toast.success { border-color: var(--sage); }
-        .toast.error   { border-color: #e74c3c; }
-
         /* === LOADING SPINNER === */
         .btn-loading {
             position: relative;
@@ -777,6 +793,8 @@
             text-align: center;
             background: var(--deep-blue);
             color: var(--cream);
+            position: relative;
+            z-index: 2;
         }
 
         .footer p {
@@ -800,21 +818,89 @@
                 height: 50px;
             }
             .gate-ornament { font-size: 60px; }
-            .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 1rem;
+            .floral-decoration {
+                opacity: 0.1;
+            }
+            .bridgerton-decoration {
+                width: 100px;
+                height: 100px;
+            }
+            .scroll-arrow svg {
+                width: 35px;
+                height: 35px;
             }
         }
 
         @media (max-width: 480px) {
             .countdown { grid-template-columns: repeat(2, 1fr); }
+            .modal-content {
+                padding: 2rem 1.5rem;
+            }
+            .scroll-arrow svg {
+                width: 30px;
+                height: 30px;
+            }
         }
     </style>
 </head>
 <body>
     
-    <!-- TOAST NOTIFICATION -->
-    <div class="toast" id="toast"></div>
+    <!-- FLORES DECORATIVAS ESTÁTICAS -->
+    <div class="floral-decoration floral-top-left">
+        <img src="./images/flores1.png" alt="">
+    </div>
+    <div class="floral-decoration floral-top-right">
+        <img src="./images/flores2.png" alt="">
+    </div>
+    <div class="floral-decoration floral-mid-left-1">
+        <img src="./images/flores3.png" alt="">
+    </div>
+    <div class="floral-decoration floral-mid-right-1">
+        <img src="./images/flores4.png" alt="">
+    </div>
+    <div class="floral-decoration floral-mid-left-2">
+        <img src="./images/flores1.png" alt="">
+    </div>
+    <div class="floral-decoration floral-mid-right-2">
+        <img src="./images/flores2.png" alt="">
+    </div>
+    <div class="floral-decoration floral-lower-left">
+        <img src="./images/flores3.png" alt="">
+    </div>
+    <div class="floral-decoration floral-lower-right">
+        <img src="./images/flores4.png" alt="">
+    </div>
+    <div class="floral-decoration floral-bottom-left">
+        <img src="./images/flores1.png" alt="">
+    </div>
+    <div class="floral-decoration floral-bottom-right">
+        <img src="./images/flores2.png" alt="">
+    </div>
+
+    <!-- DECORACIÓN BRIDGERTON ESTÁTICA -->
+    <div class="bridgerton-decoration bridgerton-1">
+        <img src="./images/bridgerton.png" alt="">
+    </div>
+    <div class="bridgerton-decoration bridgerton-2">
+        <img src="./images/bridgerton.png" alt="">
+    </div>
+    <div class="bridgerton-decoration bridgerton-3">
+        <img src="./images/bridgerton.png" alt="">
+    </div>
+    <div class="bridgerton-decoration bridgerton-4">
+        <img src="./images/bridgerton.png" alt="">
+    </div>
+
+    <!-- MODAL/POP-UP -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-decorative-border"></div>
+            <div class="modal-icon" id="modalIcon">✨</div>
+            <h2 class="modal-title" id="modalTitle">Mensaje</h2>
+            <p class="modal-message" id="modalMessage">Este es un mensaje elegante.</p>
+            <button class="modal-button" onclick="closeModal()">Entendido</button>
+        </div>
+    </div>
 
     <!-- PORTONES DEL PALACIO -->
     <div class="gate-container" id="gateContainer">
@@ -840,6 +926,13 @@
         <div class="divider"></div>
         <p class="subtitle">A celebrar los XV años de Ema</p>
         <p class="event-date">📅 Sábado, 15 de Marzo de 2026 • 19:00 hs</p>
+        
+        <!-- FLECHA HACIA ABAJO -->
+        <div class="scroll-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+        </div>
     </section>
 
     <!-- COUNTDOWN -->
@@ -1021,58 +1114,33 @@
             appId: "1:1059083494206:web:1ac4305a0542320463026f"
         };
 
-        // Inicializa Firebase
         const app = initializeApp(firebaseConfig);
-
-        // 🔥 INICIALIZA FIRESTORE (ESTO FALTABA)
         const db = getFirestore(app);
 
-        // 👉 RSVP → colección "1"
-        document.getElementById("rsvpForm")?.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            try {
-            await addDoc(collection(db, "1"), {
-                nombre: document.getElementById("name").value,
-                telefono: document.getElementById("phone").value,
-                asistencia: document.getElementById("attendance").value,
-                alimentacion: document.getElementById("dietary").value || "Normal",
-                mensaje: document.getElementById("message").value,
-                fecha: serverTimestamp()
-            });
-
-            alert("RSVP enviado");
-            e.target.reset();
-            } catch (err) {
-            console.error("ERROR RSVP:", err);
-            alert("Error al enviar RSVP (ver consola)");
-            }
-        });
-
-        // 👉 Canciones → colección "canciones"
-        document.getElementById("submitSongsBtn")?.addEventListener("click", async () => {
-            try {
-            await addDoc(collection(db, "canciones"), {
-                cancion: document.getElementById("songName").value,
-                nombre_invitado: document.getElementById("name")?.value || "Anónimo",
-                fecha: serverTimestamp()
-            });
-
-            alert("Canción enviada");
-            document.getElementById("songName").value = "";
-            } catch (err) {
-            console.error("ERROR CANCIÓN:", err);
-            alert("Error al enviar canción (ver consola)");
-            }
-        });
-
-        // ── Utilidad: Toast ────────────────────────────
-        function showToast(msg, type = 'success') {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.className = `toast ${type} show`;
-            setTimeout(() => { toast.classList.remove('show'); }, 4000);
+        // ── Función para mostrar modal elegante ────────
+        window.showModal = function(title, message, icon = '✨', type = 'success') {
+            const modal = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalIcon = document.getElementById('modalIcon');
+            
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modalIcon.textContent = icon;
+            
+            modal.classList.add('show');
         }
+
+        window.closeModal = function() {
+            document.getElementById('modalOverlay').classList.remove('show');
+        }
+
+        // Cerrar modal al hacer click fuera
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
 
         // ── Countdown ─────────────────────────────────
         function updateCountdown() {
@@ -1108,7 +1176,7 @@
         });
 
         // ══════════════════════════════════════════════
-        // ✅  FORMULARIO RSVP  →  colección "rsvp"
+        // ✅  FORMULARIO RSVP
         // ══════════════════════════════════════════════
         document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -1118,7 +1186,7 @@
             btn.textContent = 'Enviando…';
 
             try {
-                await addDoc(collection(db, 'rsvp'), {
+                await addDoc(collection(db, '1'), {
                     nombre:       document.getElementById('name').value.trim(),
                     telefono:     document.getElementById('phone').value.trim(),
                     asistencia:   document.getElementById('attendance').value,
@@ -1127,12 +1195,22 @@
                     fecha:        serverTimestamp()
                 });
 
-                showToast('✨ ¡Confirmación enviada con éxito! Gracias por responder.', 'success');
+                showModal(
+                    '¡Confirmación Recibida!',
+                    'Su asistencia ha sido registrada con éxito. ¡Esperamos verle en la celebración!',
+                    '🎉',
+                    'success'
+                );
                 e.target.reset();
 
             } catch (err) {
                 console.error('Error RSVP:', err);
-                showToast('❌ Hubo un error al enviar. Intente nuevamente.', 'error');
+                showModal(
+                    'Error al Enviar',
+                    'Hubo un problema al procesar su confirmación. Por favor, intente nuevamente.',
+                    '⚠️',
+                    'error'
+                );
             } finally {
                 btn.classList.remove('btn-loading');
                 btn.textContent = 'Confirmar Asistencia';
@@ -1140,12 +1218,11 @@
         });
 
         // ══════════════════════════════════════════════
-        // 🎵  FORMULARIO CANCIONES  →  colección "canciones"
+        // 🎵  FORMULARIO CANCIONES
         // ══════════════════════════════════════════════
         const songInput   = document.getElementById('songName');
         const submitBtn   = document.getElementById('submitSongsBtn');
 
-        // Habilitar botón sólo cuando hay texto
         songInput.addEventListener('input', () => {
             submitBtn.disabled = songInput.value.trim() === '';
         });
@@ -1159,7 +1236,6 @@
             submitBtn.disabled = true;
 
             try {
-                // Vincula la canción al nombre del RSVP si ya fue completado
                 const nombreInvitado = document.getElementById('name')?.value.trim() || 'Anónimo';
 
                 await addDoc(collection(db, 'canciones'), {
@@ -1168,16 +1244,26 @@
                     fecha:           serverTimestamp()
                 });
 
-                showToast('🎶 ¡Canción sugerida con éxito! Gracias por la recomendación.', 'success');
+                showModal(
+                    '¡Canción Agregada!',
+                    'Su sugerencia musical ha sido recibida. ¡Gracias por contribuir a la banda sonora de la noche!',
+                    '🎵',
+                    'success'
+                );
                 songInput.value = '';
 
             } catch (err) {
                 console.error('Error canciones:', err);
-                showToast('❌ Hubo un error. Intente nuevamente.', 'error');
+                showModal(
+                    'Error al Enviar',
+                    'No pudimos procesar su sugerencia. Por favor, intente nuevamente.',
+                    '⚠️',
+                    'error'
+                );
             } finally {
                 submitBtn.classList.remove('btn-loading');
                 submitBtn.textContent = 'Enviar Sugerencias Musicales';
-                submitBtn.disabled = true; // vuelve a deshabilitarse hasta que escriban
+                submitBtn.disabled = true;
             }
         });
 

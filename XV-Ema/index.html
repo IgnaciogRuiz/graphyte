@@ -383,8 +383,8 @@
         }
 
         .crest {
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             margin-bottom: 1.5rem;
             position: relative;
         }
@@ -516,6 +516,23 @@
             margin: 0 auto;
             position: relative;
             z-index: 2;
+        }
+
+
+        /* === AJUSTE RESPONSIVE VESTIMENTA === */
+        .vestimenta {
+            width: 100%;       /* Ocupa todo el ancho disponible del padre */
+            max-width: 500px;  /* Evita que en PC se vea exageradamente grande */
+            margin: 0 auto;    /* Centra el contenedor */
+            display: flex;
+            justify-content: center;
+        }
+
+        .vestimenta img {
+            width: 100%;       /* La imagen se estira al 100% de .vestimenta */
+            height: auto;      /* Mantiene la proporción */
+            border-radius: 12px; /* Opcional: para que combine con tus cards */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .info-card {
@@ -972,23 +989,8 @@
                 <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--burgundy); margin-bottom: 1rem; text-align: center;">
                     <strong>Referencias de Vestimenta</strong>
                 </p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
-                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--rose) 0%, var(--sage) 100%);">
-                        <img src="./images/d1.jpg" alt="Vestido largo claro" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
-                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Vestido Largo</div>
-                    </div>
-                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--sage) 0%, var(--gold) 100%);">
-                        <img src="./images/d2.jpg" alt="Traje caballero" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
-                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Traje Caballero</div>
-                    </div>
-                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);">
-                        <img src="./images/d3.jpg" alt="Vestido elegante" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
-                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Elegancia</div>
-                    </div>
-                    <div style="aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: linear-gradient(135deg, var(--rose) 0%, var(--burgundy) 100%);">
-                        <img src="./images/d4.jpg" alt="Tonos claros" style="width: 100%; height: 100%; object-fit: cover; display: none;" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
-                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-align: center; padding: 1rem;">Tonos Claros</div>
-                    </div>
+                <div class="vestimenta">
+                    <img src="./images/vestimenta.jpeg" alt="">
                 </div>
             </div>
         </div>

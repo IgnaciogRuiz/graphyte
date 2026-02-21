@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emma - Mis Quince Años</title>
+<link rel="shortcut icon" href="./assets/favicon.jpg" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -105,8 +106,8 @@
   .floral-card .fc-content { position: relative; z-index: 2; padding: 40px 125px; text-align: center; }
 
   /* ── DATE ── */
-  .date-day { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600; color: var(--text-dark); letter-spacing: 7px; text-transform: uppercase; margin-bottom: 10px; }
-  .date-numbers { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 500; color: var(--pink-dark); letter-spacing: 4px; }
+  .date-day { font-family: 'Cinzel', serif; font-size: clamp(13px, 4vw, 22px); font-weight: 600; color: var(--text-dark); letter-spacing: clamp(3px, 2vw, 7px); text-transform: uppercase; margin-bottom: 10px; }
+  .date-numbers { font-family: 'Cinzel', serif; font-size: clamp(26px, 8vw, 42px); font-weight: 500; color: var(--pink-dark); letter-spacing: clamp(1px, 1.5vw, 4px); text-align: center; width: 100%; }
 
   /* ── LOCATION ── */
   .location-icon { font-size: 38px; color: white; margin-bottom: 14px; display: block; }
@@ -123,9 +124,9 @@
   .schedule-time { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 400; letter-spacing: 4px; color: white; }
 
   /* ── DRESS CODE ── */
-  .dresscode-icon { font-size: 44px; color: var(--gold); margin-bottom: 16px; display: block; }
-  .dresscode-title { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600; letter-spacing: 5px; color: var(--text-dark); text-transform: uppercase; margin-bottom: 8px; }
-  .dresscode-sub { font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 300; letter-spacing: 5px; color: var(--text-mid); text-transform: uppercase; }
+  .dresscode-icon { font-size: clamp(32px, 9vw, 44px); color: var(--gold); margin-bottom: 16px; display: block; }
+  .dresscode-title { font-family: 'Cinzel', serif; font-size: clamp(14px, 4.5vw, 22px); font-weight: 600; letter-spacing: clamp(2px, 1.5vw, 5px); color: var(--text-dark); text-transform: uppercase; margin-bottom: 8px; }
+  .dresscode-sub { font-family: 'Raleway', sans-serif; font-size: clamp(12px, 3.5vw, 17px); font-weight: 300; letter-spacing: clamp(2px, 1.5vw, 5px); color: var(--text-mid); text-transform: uppercase; }
 
   /* ── PAYMENT ── */
   .payment-title { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 600; letter-spacing: 2px; color: white; line-height: 1.6; margin-bottom: 28px; }
@@ -445,6 +446,41 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- ════ CANCIONES QUE NO PUEDEN FALTAR ════ -->
+    <div class="songs-section fade-in">
+      <span class="songs-icon">🎵</span>
+      <div class="songs-title">Canciones que no pueden faltar</div>
+      <div class="songs-subtitle">
+        ¿Cuál es esa canción que nos tiene<br>que hacer bailar toda la noche?<br>¡Mandame tu pedido!
+      </div>
+      <div class="songs-form">
+        <input
+          class="songs-input"
+          id="songName"
+          type="text"
+          maxlength="120"
+          placeholder="🎶 Nombre de la canción y artista"
+          autocomplete="off"
+        >
+        <input
+          class="songs-input"
+          id="songGuest"
+          type="text"
+          maxlength="60"
+          placeholder="Tu nombre (opcional)"
+          autocomplete="off"
+        >
+      </div>
+      <div class="songs-feedback" id="songsFeedback"></div>
+      <button class="btn-gold" onclick="enviarCancion()" id="songBtn">
+        ♫ ENVIAR PEDIDO
+      </button>
+    </div>
+
+    <!-- CONFIRMAR ASISTENCIA -->
+    <div class="section-pink fade-in">
       <div class="presence-text">
         TU PRESENCIA ES MUY<br>
         IMPORTANTE PARA MI, NO<br>
@@ -471,40 +507,6 @@
     <!-- FILIGRANA 2 -->
     <div class="filigrana-divider fade-in">
       <img src="./assets/filigrana.jpeg" alt="Ornamento dorado">
-    </div>
-
-    <!-- ════ CANCIONES QUE NO PUEDEN FALTAR ════ -->
-    <div class="songs-section fade-in">
-      <span class="songs-icon">🎵</span>
-      <div class="songs-title">Canciones que no pueden faltar</div>
-      <div class="songs-subtitle">
-        ¿Cuál es esa canción que nos tiene<br>que hacer bailar toda la noche?<br>¡Mandame tu pedido!
-      </div>
-
-      <div class="songs-form">
-        <input
-          class="songs-input"
-          id="songName"
-          type="text"
-          maxlength="120"
-          placeholder="🎶 Nombre de la canción y artista"
-          autocomplete="off"
-        >
-        <input
-          class="songs-input"
-          id="songGuest"
-          type="text"
-          maxlength="60"
-          placeholder="Tu nombre (opcional)"
-          autocomplete="off"
-        >
-      </div>
-      <div class="songs-feedback" id="songsFeedback"></div>
-      <button class="btn-gold" onclick="enviarCancion()" id="songBtn" style="margin-bottom:32px;">
-        ♫ ENVIAR PEDIDO
-      </button>
-
-
     </div>
 
     <!-- PHOTOS -->

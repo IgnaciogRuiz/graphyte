@@ -29,255 +29,89 @@
     overflow-x: hidden;
   }
 
-  /* ════════════════════════════════
-     VIDEO INTRO
-     El video es horizontal (16:9), la pantalla es vertical.
-     Estrategia: fondo negro, video centrado al 100% de ancho,
-     alto automático → se ve completo con barras negras arriba/abajo.
-     Así no se recorta nada y se mantiene la calidad original.
-  ════════════════════════════════ */
+  /* ════ VIDEO INTRO ════ */
   #intro-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    position: fixed; inset: 0; z-index: 9999; background: #000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
   }
-
-  #intro-video {
-    /* Ancho completo → alto se calcula solo respetando 16:9  */
-    width: 100%;
-    height: auto;
-    display: block;
-    /* Si el ancho de pantalla es muy angosto el video puede quedar
-       muy pequeño; como mínimo ocupamos todo el ancho disponible   */
-    max-width: 100%;
-  }
-
-  /* En pantallas donde el alto es menor que el ancho del video
-     (landscape), lo ajustamos al alto completo en cambio          */
-  @media (orientation: landscape) {
-    #intro-video {
-      width: auto;
-      height: 100%;
-    }
-  }
-
-  /* Barra de progreso */
+  #intro-video { width: 100%; height: auto; display: block; max-width: 100%; }
+  @media (orientation: landscape) { #intro-video { width: auto; height: 100%; } }
   #intro-progress-wrap {
-    position: absolute;
-    bottom: 72px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    max-width: 280px;
-    height: 3px;
-    background: rgba(255,255,255,0.25);
-    border-radius: 2px;
-    overflow: hidden;
+    position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%);
+    width: 60%; max-width: 280px; height: 3px;
+    background: rgba(255,255,255,0.25); border-radius: 2px; overflow: hidden;
   }
-  #intro-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: rgba(255,255,255,0.8);
-    border-radius: 2px;
-    transition: width 0.3s linear;
-  }
-
-  /* Botón de audio (mute/unmute) */
+  #intro-progress-bar { height: 100%; width: 0%; background: rgba(255,255,255,0.8); border-radius: 2px; transition: width 0.3s linear; }
   #audio-btn {
-    position: absolute;
-    bottom: 28px;
-    left: 24px;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.5);
-    color: white;
-    font-size: 20px;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
+    position: absolute; bottom: 28px; left: 24px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.5);
+    color: white; font-size: 20px; width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+    backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; transition: background 0.2s;
   }
   #audio-btn:hover { background: rgba(255,255,255,0.32); }
-
   #skip-btn {
-    position: absolute;
-    bottom: 36px;
-    right: 24px;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.5);
-    color: white;
-    font-family: 'Raleway', sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    padding: 9px 22px;
-    border-radius: 20px;
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    transition: background 0.2s;
-    text-transform: uppercase;
+    position: absolute; bottom: 36px; right: 24px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.5);
+    color: white; font-family: 'Raleway', sans-serif; font-size: 13px;
+    letter-spacing: 2px; padding: 9px 22px; border-radius: 20px; cursor: pointer;
+    backdrop-filter: blur(4px); transition: background 0.2s; text-transform: uppercase;
   }
   #skip-btn:hover { background: rgba(255,255,255,0.32); }
+  #intro-screen.fade-out { animation: introFadeOut 1s ease forwards; pointer-events: none; }
+  @keyframes introFadeOut { from { opacity: 1; } to { opacity: 0; } }
 
-  #intro-screen.fade-out {
-    animation: introFadeOut 1s ease forwards;
-    pointer-events: none;
-  }
-  @keyframes introFadeOut {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-  }
-
-  /* ════════════════════════════════
-     CARD
-  ════════════════════════════════ */
-  .card {
-    width: 100%;
-    max-width: 430px;
-    background: white;
-    position: relative;
-    opacity: 0;
-    transition: opacity 0.7s ease 0.2s;
-  }
+  /* ════ CARD ════ */
+  .card { width: 100%; max-width: 430px; background: white; position: relative; opacity: 0; transition: opacity 0.7s ease 0.2s; }
   .card.visible { opacity: 1; }
 
   /* ── HERO ── */
-  .hero {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 9/16;
-    max-height: 600px;
-    overflow: hidden;
-  }
-  .hero img.hero-bg {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center top;
-    display: block;
-  }
-  .hero-overlay {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding-bottom: 60px;
-  }
+  .hero { position: relative; width: 100%; aspect-ratio: 9/16; max-height: 600px; overflow: hidden; }
+  .hero img.hero-bg { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 60px; }
 
   /* ── MUSIC PLAYER ── */
-  .music-player {
-    background: white; padding: 16px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid #f0dada;
-  }
+  .music-player { background: white; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f0dada; }
   .player-left { display: flex; align-items: center; gap: 14px; }
-  .play-btn {
-    width: 48px; height: 48px; background: var(--pink);
-    border: none; border-radius: 8px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 20px; transition: background 0.2s;
-  }
+  .play-btn { width: 48px; height: 48px; background: var(--pink); border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; transition: background 0.2s; }
   .play-btn:hover { background: var(--pink-dark); }
   .player-dot { width: 12px; height: 12px; background: var(--pink); border-radius: 50%; }
-  @keyframes pulse {
-    0%,100% { transform: scale(1); opacity: 1; }
-    50%      { transform: scale(1.6); opacity: 0.5; }
-  }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.6); opacity: 0.5; } }
   .playing .player-dot { animation: pulse 1s infinite; }
   .player-middle { display: flex; align-items: center; gap: 12px; }
-  .volume-btn {
-    width: 42px; height: 42px; background: var(--pink);
-    border: none; border-radius: 8px; cursor: pointer;
-    color: white; font-size: 18px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .volume-bar {
-    width: 80px; height: 7px;
-    background: var(--pink-light); border-radius: 4px; position: relative;
-  }
+  .volume-btn { width: 42px; height: 42px; background: var(--pink); border: none; border-radius: 8px; cursor: pointer; color: white; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+  .volume-bar { width: 80px; height: 7px; background: var(--pink-light); border-radius: 4px; position: relative; }
   .volume-fill { width: 65%; height: 100%; background: var(--pink); border-radius: 4px; }
-  .volume-thumb {
-    position: absolute; right: 33%; top: 50%;
-    transform: translate(50%, -50%);
-    width: 15px; height: 15px;
-    background: var(--pink-dark); border-radius: 50%;
-  }
-  .settings-btn {
-    width: 42px; height: 42px; background: var(--pink);
-    border: none; border-radius: 8px; cursor: pointer;
-    color: white; font-size: 18px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .volume-thumb { position: absolute; right: 33%; top: 50%; transform: translate(50%, -50%); width: 15px; height: 15px; background: var(--pink-dark); border-radius: 50%; }
 
   /* ── SECTIONS ── */
   .section-white { background: white; padding: 52px 36px; text-align: center; }
   .section-pink  { background: var(--pink-bg); padding: 38px 28px; text-align: center; }
 
   /* ── MESSAGE ── */
-  .message-text {
-    font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 300;
-    letter-spacing: 2px; color: var(--text-mid); line-height: 2.3;
-    text-transform: uppercase; margin-bottom: 32px;
-  }
-  .message-invite {
-    font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 400;
-    letter-spacing: 2.5px; color: var(--text-mid); line-height: 2.3; text-transform: uppercase;
-  }
+  .message-text { font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 300; letter-spacing: 2px; color: var(--text-mid); line-height: 2.3; text-transform: uppercase; margin-bottom: 32px; }
+  .message-invite { font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 400; letter-spacing: 2.5px; color: var(--text-mid); line-height: 2.3; text-transform: uppercase; }
 
   /* ── COUNTDOWN ── */
   .countdown-grid { display: flex; justify-content: center; gap: 28px; }
   .countdown-item { text-align: center; }
-  .countdown-number {
-    font-family: 'Cinzel', serif; font-size: 48px; font-weight: 400;
-    color: white; display: block; line-height: 1;
-  }
-  .countdown-label {
-    font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 300;
-    letter-spacing: 4px; color: white; display: block; margin-top: 8px; opacity: 0.85;
-  }
+  .countdown-number { font-family: 'Cinzel', serif; font-size: 48px; font-weight: 400; color: white; display: block; line-height: 1; }
+  .countdown-label { font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 300; letter-spacing: 4px; color: white; display: block; margin-top: 8px; opacity: 0.85; }
 
   /* ── FLORAL FRAME ── */
   .floral-card { position: relative; background: white; overflow: hidden; }
-  .floral-card .fc-img-left,
-  .floral-card .fc-img-right {
-    position: absolute; top: 0; bottom: 0;
-    width: 115px; height: 100%;
-    object-fit: cover; pointer-events: none; display: block;
-  }
+  .floral-card .fc-img-left, .floral-card .fc-img-right { position: absolute; top: 0; bottom: 0; width: 115px; height: 100%; object-fit: cover; pointer-events: none; display: block; }
   .floral-card .fc-img-left  { left: 0;  object-position: right center; }
   .floral-card .fc-img-right { right: 0; transform: scaleX(-1); object-position: right center; }
-  .floral-card .fc-content {
-    position: relative; z-index: 2;
-    padding: 40px 125px; text-align: center;
-  }
+  .floral-card .fc-content { position: relative; z-index: 2; padding: 40px 125px; text-align: center; }
 
   /* ── DATE ── */
-  .date-day {
-    font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600;
-    color: var(--text-dark); letter-spacing: 7px; text-transform: uppercase; margin-bottom: 10px;
-  }
-  .date-numbers {
-    font-family: 'Cinzel', serif; font-size: 42px; font-weight: 500;
-    color: var(--pink-dark); letter-spacing: 4px;
-  }
+  .date-day { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600; color: var(--text-dark); letter-spacing: 7px; text-transform: uppercase; margin-bottom: 10px; }
+  .date-numbers { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 500; color: var(--pink-dark); letter-spacing: 4px; }
 
   /* ── LOCATION ── */
   .location-icon { font-size: 38px; color: white; margin-bottom: 14px; display: block; }
-  .location-venue {
-    font-family: 'Raleway', sans-serif; font-size: 19px; font-weight: 500;
-    letter-spacing: 5px; color: white; text-transform: uppercase; margin-bottom: 8px;
-  }
-  .location-address {
-    font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300;
-    letter-spacing: 4px; color: white; text-transform: uppercase;
-    margin-bottom: 26px; opacity: 0.9;
-  }
+  .location-venue { font-family: 'Raleway', sans-serif; font-size: 19px; font-weight: 500; letter-spacing: 5px; color: white; text-transform: uppercase; margin-bottom: 8px; }
+  .location-address { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300; letter-spacing: 4px; color: white; text-transform: uppercase; margin-bottom: 26px; opacity: 0.9; }
 
   /* ── FILIGRANA ── */
   .filigrana-divider { background: white; padding: 14px 20px; text-align: center; }
@@ -285,175 +119,201 @@
 
   /* ── SCHEDULE ── */
   .clock-icon { font-size: 48px; color: white; margin-bottom: 14px; display: block; }
-  .schedule-title {
-    font-family: 'Cinzel', serif; font-size: 18px; font-weight: 500;
-    letter-spacing: 6px; color: white; text-transform: uppercase; margin-bottom: 6px;
-  }
-  .schedule-time {
-    font-family: 'Cinzel', serif; font-size: 26px; font-weight: 400; letter-spacing: 4px; color: white;
-  }
+  .schedule-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 500; letter-spacing: 6px; color: white; text-transform: uppercase; margin-bottom: 6px; }
+  .schedule-time { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 400; letter-spacing: 4px; color: white; }
 
   /* ── DRESS CODE ── */
   .dresscode-icon { font-size: 44px; color: var(--gold); margin-bottom: 16px; display: block; }
-  .dresscode-title {
-    font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600;
-    letter-spacing: 5px; color: var(--text-dark); text-transform: uppercase; margin-bottom: 8px;
-  }
-  .dresscode-sub {
-    font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 300;
-    letter-spacing: 5px; color: var(--text-mid); text-transform: uppercase;
-  }
+  .dresscode-title { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600; letter-spacing: 5px; color: var(--text-dark); text-transform: uppercase; margin-bottom: 8px; }
+  .dresscode-sub { font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 300; letter-spacing: 5px; color: var(--text-mid); text-transform: uppercase; }
 
-/* ── PAYMENT ── */
-  .payment-title {
-    font-family: 'Cinzel', serif; font-size: 17px; font-weight: 600;
-    letter-spacing: 2px; color: white; line-height: 1.6;
-    margin-bottom: 28px;
-  }
-  .payment-text {
-    font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300;
-    letter-spacing: 2px; color: white; line-height: 2.2; text-transform: uppercase; margin-bottom: 26px;
-  }
+  /* ── PAYMENT ── */
+  .payment-title { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 600; letter-spacing: 2px; color: white; line-height: 1.6; margin-bottom: 28px; }
+  .payment-text { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300; letter-spacing: 2px; color: white; line-height: 2.2; text-transform: uppercase; margin-bottom: 26px; }
   .payment-text .alias { font-weight: 600; }
-  .payment-block {
-    background: rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 26px 22px;
-    margin-bottom: 28px;
-    text-align: left;
-  }
-  .payment-category {
-    font-family: 'Cinzel', serif;
-    font-size: 15px; font-weight: 600;
-    letter-spacing: 3px; color: white;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .payment-paragraph {
-    font-family: 'Raleway', sans-serif;
-    font-size: 14px; font-weight: 300;
-    color: rgba(255,255,255,0.92);
-    line-height: 1.9;
-    letter-spacing: 0.5px;
-  }
-  .payment-divider {
-    border: none;
-    border-top: 1px solid rgba(255,255,255,0.25);
-    margin: 20px 0;
-  }
-  .payment-closing {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px; font-weight: 400; font-style: italic;
-    color: white;
-    line-height: 1.9;
-    text-align: center;
-    opacity: 0.95;
-    padding-top: 4px;
-  }
-  .presence-text {
-    font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300;
-    letter-spacing: 2px; color: white; line-height: 2.2; text-transform: uppercase;
-    margin-bottom: 28px; opacity: 0.9;
-  }
+  .payment-block { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 26px 22px; margin-bottom: 28px; text-align: left; }
+  .payment-category { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; letter-spacing: 3px; color: white; text-transform: uppercase; margin-bottom: 10px; }
+  .payment-paragraph { font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.92); line-height: 1.9; letter-spacing: 0.5px; }
+  .payment-divider { border: none; border-top: 1px solid rgba(255,255,255,0.25); margin: 20px 0; }
+  .payment-closing { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 400; font-style: italic; color: white; line-height: 1.9; text-align: center; opacity: 0.95; padding-top: 4px; }
+  .presence-text { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300; letter-spacing: 2px; color: white; line-height: 2.2; text-transform: uppercase; margin-bottom: 28px; opacity: 0.9; }
 
   /* ── BUTTONS ── */
-  .btn-gold {
-    display: inline-block; background: var(--gold); color: white;
-    font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 500;
-    letter-spacing: 4px; text-transform: uppercase;
-    padding: 17px 36px; border: none; border-radius: 4px;
-    cursor: pointer; text-decoration: none; transition: background 0.2s;
-  }
+  .btn-gold { display: inline-block; background: var(--gold); color: white; font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; padding: 17px 36px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
   .btn-gold:hover { background: var(--gold-light); }
 
   /* ── GIFT ── */
   .gift-icon    { font-size: 54px; color: var(--pink-dark); margin-bottom: 18px; display: block; }
-  .diamond-icon { font-size: 50px; color: var(--gold); display: block; margin: 24px 0 18px; }
-  .gift-text, .vals-text {
-    font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 300;
-    letter-spacing: 1.0px; color: var(--text-mid); line-height: 2.2;
-    text-transform: uppercase; margin-bottom: 18px;
-  }
+  .gift-text, .vals-text { font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 300; letter-spacing: 1.0px; color: var(--text-mid); line-height: 2.2; text-transform: uppercase; margin-bottom: 18px; }
   .gift-alias { font-weight: 500; font-size: 16px; color: var(--text-dark); }
 
   /* ── PHOTOS ── */
   .photos-icon { font-size: 50px; color: white; margin-bottom: 18px; display: block; }
-  .photos-text {
-    font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300;
-    letter-spacing: 2px; color: white; line-height: 2.2; text-transform: uppercase;
-    margin-bottom: 28px; opacity: 0.95;
-  }
+  .photos-text { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 300; letter-spacing: 2px; color: white; line-height: 2.2; text-transform: uppercase; margin-bottom: 28px; opacity: 0.95; }
 
   /* ── FOOTER ── */
   .footer { background: rgba(180,130,130,0.35); padding: 16px 20px; text-align: center; }
-  .footer-text {
-    font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 300;
-    letter-spacing: 3px; color: var(--text-mid); text-transform: uppercase;
-  }
+  .footer-text { font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 300; letter-spacing: 3px; color: var(--text-mid); text-transform: uppercase; }
 
   /* ── BACK TO TOP ── */
-  .back-top {
-    position: fixed; bottom: 24px; right: 24px;
-    width: 46px; height: 46px; background: #e75480; color: white;
-    border: none; border-radius: 8px; cursor: pointer; font-size: 20px;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s; z-index: 100;
-  }
+  .back-top { position: fixed; bottom: 24px; right: 24px; width: 46px; height: 46px; background: #e75480; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; z-index: 100; }
   .back-top.visible { opacity: 1; }
 
   /* ── SCROLL FADE ── */
-  .fade-in {
-    opacity: 0; transform: translateY(26px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
+  .fade-in { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ════════════════════════════════
+     SONGS SECTION
+  ════════════════════════════════ */
+  .songs-section {
+    background: white;
+    padding: 52px 36px;
+    text-align: center;
+  }
+  .songs-icon {
+    font-size: 50px;
+    color: var(--pink-dark);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .songs-title {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .songs-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text-mid);
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .songs-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .songs-input {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: var(--text-dark);
+    background: var(--pink-light);
+    border: 1px solid var(--pink);
+    border-radius: 8px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+  .songs-input::placeholder { color: var(--pink-dark); opacity: 0.7; letter-spacing: 1px; }
+  .songs-input:focus { border-color: var(--pink-dark); box-shadow: 0 0 0 3px rgba(201,142,151,0.15); }
+
+
+  .songs-feedback { font-family: 'Raleway', sans-serif; font-size: 13px; letter-spacing: 1.5px; color: var(--pink-dark); min-height: 20px; margin-top: -8px; margin-bottom: 8px; text-transform: uppercase; }
+  .songs-loading { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--pink); border-top-color: var(--pink-dark); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ════════════════════════════════
+     RSVP MODAL
+  ════════════════════════════════ */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(90,58,58,0.55);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal-box {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(90,58,58,0.25);
+    animation: slideUp 0.35s ease;
+    position: relative;
+  }
+  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none; border: none;
+    font-size: 22px; color: var(--pink-dark);
+    cursor: pointer; line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text-dark); }
+  .modal-icon { font-size: 48px; margin-bottom: 14px; display: block; }
+  .modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 20px; font-weight: 600;
+    letter-spacing: 4px; color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .modal-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-style: italic;
+    color: var(--text-mid); margin-bottom: 28px; line-height: 1.6;
+  }
+  .modal-input {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px; letter-spacing: 1px;
+    color: var(--text-dark);
+    background: var(--pink-light);
+    border: 1px solid var(--pink);
+    border-radius: 8px;
+    padding: 15px 18px;
+    width: 100%; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .modal-input::placeholder { color: var(--pink-dark); opacity: 0.7; }
+  .modal-input:focus { border-color: var(--pink-dark); box-shadow: 0 0 0 3px rgba(201,142,151,0.15); }
+  .modal-feedback {
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px; letter-spacing: 1.5px;
+    color: var(--pink-dark); min-height: 18px;
+    margin-bottom: 10px; text-transform: uppercase;
+  }
+  .modal-success {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-style: italic;
+    color: var(--text-dark); line-height: 1.8;
+    display: none;
+    margin-top: 10px;
+  }
 </style>
 </head>
 <body>
 
   <!-- ════ VIDEO INTRO ════ -->
   <div id="intro-screen">
-    <!--
-      SIN autoplay ni muted: el navegador requiere interacción del usuario
-      para reproducir audio. Mostramos un botón de "tap para iniciar"
-      y al tocarlo destrabamos el audio + arrancamos el video.
-    -->
     <video id="intro-video" playsinline loop>
       <source src="./assets/video.mp4" type="video/mp4">
     </video>
-
-    <!-- Pantalla de tap inicial (cubre el video hasta que el usuario toca) -->
-    <div id="tap-screen" onclick="startVideo()" style="
-      position:absolute; inset:0; z-index:10;
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:center;
-      background: rgba(0,0,0,0.55);
-      cursor:pointer;
-    ">
-      <div style="
-        width:74px; height:74px;
-        border-radius:50%;
-        background:rgba(255,255,255,0.15);
-        border:2px solid rgba(255,255,255,0.7);
-        display:flex; align-items:center; justify-content:center;
-        font-size:28px; color:white;
-        margin-bottom:18px;
-      ">▶</div>
-      <p style="
-        font-family:'Raleway',sans-serif;
-        color:white; font-size:14px;
-        letter-spacing:3px; text-transform:uppercase;
-        opacity:0.85;
-      ">TOCÁ PARA COMENZAR</p>
+    <div id="tap-screen" onclick="startVideo()" style="position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);cursor:pointer;">
+      <div style="width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.7);display:flex;align-items:center;justify-content:center;font-size:28px;color:white;margin-bottom:18px;">▶</div>
+      <p style="font-family:'Raleway',sans-serif;color:white;font-size:14px;letter-spacing:3px;text-transform:uppercase;opacity:0.85;">TOCÁ PARA COMENZAR</p>
     </div>
-
-    <div id="intro-progress-wrap">
-      <div id="intro-progress-bar"></div>
-    </div>
-
-    <!-- Botón mute/unmute -->
+    <div id="intro-progress-wrap"><div id="intro-progress-bar"></div></div>
     <button id="audio-btn" onclick="toggleIntroAudio()" style="display:none;">🔊</button>
-
     <button id="skip-btn" onclick="endIntro()" style="display:none;">SALTAR ›</button>
   </div>
 
@@ -562,35 +422,27 @@
       </div>
     </div>
 
-   <!-- PAYMENT -->
+    <!-- DRESS CODE DETAIL -->
     <div class="section-pink fade-in">
-
       <div class="payment-title">
         Esta ocasión exige una presentación<br>acorde a su importancia.
       </div>
-
       <div class="payment-block">
-
         <div class="payment-category">Damas</div>
         <div class="payment-paragraph">
           Se solicita atuendos largos, elegantes y en tonos claros, dignos de una velada que celebra la entrada de una joven dama en la sociedad. Los colores oscuros, y en especial el negro, deberán permanecer en reserva para otras ocasiones.
         </div>
-
         <div class="payment-divider"></div>
-
         <div class="payment-category">Caballeros</div>
         <div class="payment-paragraph">
           Se espera sastrería: traje completo o combinación de pantalón de vestir y camisa. El uso de jeans no será considerado apropiado para tan refinado encuentro.
         </div>
-
         <div class="payment-divider"></div>
-
         <div class="payment-closing">
           Esta noche ha sido pensada para brillar.<br>
           Quien respete estas indicaciones estará<br>
           a la altura del evento… y de las miradas.
         </div>
-
       </div>
 
       <div class="presence-text">
@@ -598,7 +450,7 @@
         IMPORTANTE PARA MI, NO<br>
         TE OLVIDES DE ...
       </div>
-      <button class="btn-gold" onclick="confirmar()">CONFIRMAR ASISTENCIA</button>
+      <button class="btn-gold" onclick="abrirConfirmar()">CONFIRMAR ASISTENCIA</button>
     </div>
 
     <!-- GIFT -->
@@ -613,13 +465,46 @@
           TE DEJO MI ALIAS:<br>
           <span class="gift-alias">LadyEmma2026</span>
         </div>
-
       </div>
     </div>
 
     <!-- FILIGRANA 2 -->
     <div class="filigrana-divider fade-in">
       <img src="./assets/filigrana.jpeg" alt="Ornamento dorado">
+    </div>
+
+    <!-- ════ CANCIONES QUE NO PUEDEN FALTAR ════ -->
+    <div class="songs-section fade-in">
+      <span class="songs-icon">🎵</span>
+      <div class="songs-title">Canciones que no pueden faltar</div>
+      <div class="songs-subtitle">
+        ¿Cuál es esa canción que nos tiene<br>que hacer bailar toda la noche?<br>¡Mandame tu pedido!
+      </div>
+
+      <div class="songs-form">
+        <input
+          class="songs-input"
+          id="songName"
+          type="text"
+          maxlength="120"
+          placeholder="🎶 Nombre de la canción y artista"
+          autocomplete="off"
+        >
+        <input
+          class="songs-input"
+          id="songGuest"
+          type="text"
+          maxlength="60"
+          placeholder="Tu nombre (opcional)"
+          autocomplete="off"
+        >
+      </div>
+      <div class="songs-feedback" id="songsFeedback"></div>
+      <button class="btn-gold" onclick="enviarCancion()" id="songBtn" style="margin-bottom:32px;">
+        ♫ ENVIAR PEDIDO
+      </button>
+
+
     </div>
 
     <!-- PHOTOS -->
@@ -635,9 +520,135 @@
       <div class="footer-text">Con refinada anticipación, Los Anfitriones</div>
     </div>
 
+  </div><!-- /card -->
+
+  <!-- ════ MODAL CONFIRMAR ASISTENCIA ════ -->
+  <div class="modal-overlay" id="rsvpModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="cerrarConfirmar()">✕</button>
+      <span class="modal-icon">🎀</span>
+      <div class="modal-title">Confirmá tu asistencia</div>
+      <div class="modal-subtitle">Tu presencia hace esta noche especial.<br>Hacenos saber que vas a estar.</div>
+      <input
+        class="modal-input"
+        id="rsvpName"
+        type="text"
+        maxlength="80"
+        placeholder="Tu nombre completo"
+        autocomplete="off"
+      >
+      <div class="modal-feedback" id="rsvpFeedback"></div>
+      <button class="btn-gold" onclick="enviarRsvp()" id="rsvpBtn" style="width:100%;">
+        ♡ CONFIRMAR
+      </button>
+      <div class="modal-success" id="rsvpSuccess">
+        ¡Qué alegría! Te esperamos con los brazos abiertos 🌸
+      </div>
+    </div>
   </div>
 
   <button class="back-top" id="backTop" onclick="scrollToTop()">▲</button>
+
+<!-- ════ FIREBASE ════ -->
+<script type="module">
+  import { initializeApp }    from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyBJHnltiuS-5XcrorCOHB490L3tigd5BIA",
+    authDomain:        "graphyte-18e1e.firebaseapp.com",
+    projectId:         "graphyte-18e1e",
+    storageBucket:     "graphyte-18e1e.firebasestorage.app",
+    messagingSenderId: "1059083494206",
+    appId:             "1:1059083494206:web:1ac4305a0542320463026f"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  /* ──────────────────────────────
+     ENVIAR canción
+  ────────────────────────────── */
+  window.enviarCancion = async function() {
+    const songInput  = document.getElementById("songName");
+    const guestInput = document.getElementById("songGuest");
+    const feedback   = document.getElementById("songsFeedback");
+    const btn        = document.getElementById("songBtn");
+
+    const cancion        = songInput.value.trim();
+    const nombre_invitado = guestInput.value.trim() || "Anónimo";
+
+    if (!cancion) {
+      feedback.innerHTML = "✦ Escribí el nombre de la canción";
+      return;
+    }
+
+    btn.disabled = true;
+    feedback.innerHTML = '<span class="songs-loading"></span> ENVIANDO...';
+
+    try {
+      await addDoc(collection(db, "canciones"), {
+        cancion,
+        nombre_invitado,
+        fecha: serverTimestamp()
+      });
+      songInput.value  = "";
+      guestInput.value = "";
+      feedback.innerHTML = "✦ ¡PEDIDO ENVIADO! GRACIAS 🎶";
+    } catch (e) {
+      feedback.innerHTML = "✦ Ups, algo salió mal. Intentá de nuevo.";
+      console.error(e);
+    } finally {
+      btn.disabled = false;
+    }
+  };
+
+  /* ──────────────────────────────
+     ENVIAR RSVP
+  ────────────────────────────── */
+  window.enviarRsvp = async function() {
+    const nameInput = document.getElementById("rsvpName");
+    const feedback  = document.getElementById("rsvpFeedback");
+    const btn       = document.getElementById("rsvpBtn");
+    const success   = document.getElementById("rsvpSuccess");
+
+    const nombre = nameInput.value.trim();
+    if (!nombre) {
+      feedback.textContent = "✦ Por favor, ingresá tu nombre";
+      return;
+    }
+
+    btn.disabled = true;
+    feedback.innerHTML = '<span class="songs-loading"></span> GUARDANDO...';
+
+    try {
+      await addDoc(collection(db, "confirmacion"), {
+        nombre,
+        fecha: serverTimestamp()
+      });
+      nameInput.style.display  = "none";
+      btn.style.display        = "none";
+      feedback.textContent     = "";
+      success.style.display    = "block";
+    } catch (e) {
+      feedback.textContent = "✦ Ups, algo salió mal. Intentá de nuevo.";
+      btn.disabled = false;
+      console.error(e);
+    }
+  };
+
+  /* ──────────────────────────────
+     Helpers
+  ────────────────────────────── */
+  function escHtml(str) {
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+</script>
 
 <script>
   /* ══════════════════════════════════
@@ -650,43 +661,27 @@
   const tapScreen    = document.getElementById('tap-screen');
   const audioBtn     = document.getElementById('audio-btn');
   const skipBtn      = document.getElementById('skip-btn');
-  let introEnded     = false;
-  let introTimer     = null;
-  let progressInterval = null;
-
-  // Duración total del intro en ms — ajustá a tu gusto
-  const INTRO_DURATION = 73000; // ← cambiá este valor a gusto (en ms)
+  let introEnded = false, introTimer = null, progressInterval = null;
+  const INTRO_DURATION = 73000;
 
   function startVideo() {
-    // El usuario tocó → desbloqueamos audio y arrancamos el video
     tapScreen.style.display = 'none';
-    introVideo.muted = false;   // ← audio encendido
+    introVideo.muted = false;
     introVideo.volume = 1;
-    introVideo.play().catch(() => {
-      // Si el navegador bloquea igual, reproducimos sin audio
-      introVideo.muted = true;
-      introVideo.play();
-    });
-
-    // Mostramos controles
+    introVideo.play().catch(() => { introVideo.muted = true; introVideo.play(); });
     audioBtn.style.display = 'flex';
     skipBtn.style.display  = 'block';
-
-    // Barra de progreso
     const start = Date.now();
     progressInterval = setInterval(() => {
-      const pct = Math.min(((Date.now() - start) / INTRO_DURATION) * 100, 100);
-      progressBar.style.width = pct + '%';
+      progressBar.style.width = Math.min(((Date.now()-start)/INTRO_DURATION)*100,100)+'%';
     }, 120);
-
     introTimer = setTimeout(endIntro, INTRO_DURATION);
   }
 
   function endIntro() {
     if (introEnded) return;
     introEnded = true;
-    clearTimeout(introTimer);
-    clearInterval(progressInterval);
+    clearTimeout(introTimer); clearInterval(progressInterval);
     progressBar.style.width = '100%';
     introVideo.pause();
     introScreen.classList.add('fade-out');
@@ -699,7 +694,6 @@
     audioBtn.textContent = introVideo.muted ? '🔇' : '🔊';
   }
 
-  // Fallback: si nadie interactúa, esperamos INTRO_DURATION + 10s de margen
   setTimeout(() => { if (!introEnded) endIntro(); }, INTRO_DURATION + 10000);
 
   /* ══════════════════════════════════
@@ -722,7 +716,7 @@
   setInterval(updateCountdown, 1000);
 
   /* ══════════════════════════════════
-     AUDIO CANCION
+     AUDIO
   ══════════════════════════════════ */
   const music    = document.getElementById('bgMusic');
   const playBtn  = document.getElementById('playBtn');
@@ -735,41 +729,59 @@
     playBtn.textContent = playing ? '⏸' : '▶';
     playerEl.classList.toggle('playing', playing);
     playing
-      ? music.play().catch(() => { playing = false; playBtn.textContent = '▶'; playerEl.classList.remove('playing'); })
+      ? music.play().catch(() => { playing=false; playBtn.textContent='▶'; playerEl.classList.remove('playing'); })
       : music.pause();
   }
-
   function toggleMute() { music.muted = !music.muted; }
-
   function setVolume(e) {
     const rect  = e.currentTarget.getBoundingClientRect();
-    const ratio = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+    const ratio = Math.min(Math.max((e.clientX-rect.left)/rect.width,0),1);
     music.volume = ratio;
-    document.getElementById('volFill').style.width  = (ratio * 100) + '%';
-    document.getElementById('volThumb').style.right = ((1 - ratio) * 100) + '%';
+    document.getElementById('volFill').style.width  = (ratio*100)+'%';
+    document.getElementById('volThumb').style.right = ((1-ratio)*100)+'%';
   }
 
   /* ══════════════════════════════════
-     BACK TO TOP
+     RSVP MODAL
+  ══════════════════════════════════ */
+  function abrirConfirmar() {
+    const modal = document.getElementById('rsvpModal');
+    modal.classList.add('open');
+    // Reset por si ya había confirmado en esta sesión
+    document.getElementById('rsvpName').style.display   = '';
+    document.getElementById('rsvpBtn').style.display    = '';
+    document.getElementById('rsvpFeedback').textContent = '';
+    document.getElementById('rsvpSuccess').style.display = 'none';
+  }
+  function cerrarConfirmar() {
+    document.getElementById('rsvpModal').classList.remove('open');
+  }
+  // Cerrar al hacer click fuera
+  document.getElementById('rsvpModal').addEventListener('click', function(e) {
+    if (e.target === this) cerrarConfirmar();
+  });
+
+  /* ══════════════════════════════════
+     BACK TO TOP / SCROLL FADE
   ══════════════════════════════════ */
   window.addEventListener('scroll', () => {
     document.getElementById('backTop').classList.toggle('visible', window.scrollY > 300);
   });
   function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-  /* ══════════════════════════════════
-     SCROLL FADE-IN
-  ══════════════════════════════════ */
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.12 }
   );
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  /* ══════════════════════════════════
-     CONFIRM
-  ══════════════════════════════════ */
-  function confirmar() { alert('¡Gracias! Tu asistencia fue confirmada 🎉'); }
+  /* Enter en inputs de canciones */
+  document.getElementById('songGuest').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.enviarCancion && enviarCancion();
+  });
+  document.getElementById('rsvpName').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.enviarRsvp && enviarRsvp();
+  });
 </script>
 </body>
 </html>
